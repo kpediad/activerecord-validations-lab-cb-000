@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   validate :title_is_clickbaity
 
   def title_is_clickbaity
-    if !title.include?("Won't Believe") && !title.include?("Secret") && !title.include?("Guess") && !title.include?(/Top\s\d+/)
+    if title.present? && !title.include?("Won't Believe") && !title.include?("Secret") && !title.include?("Guess") && !title.match(/Top\s\d+/)
       errors.add(:title, "is not clickbaity enough!")
     end
   end
